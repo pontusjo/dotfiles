@@ -1,4 +1,18 @@
-" Options
+" Plugin
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+
+Plug 'Yazeed1s/minimal.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'preservim/nerdtree'
+
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/conflict-marker.vim'
+
+call plug#end()
+
+" Option
 set title
 set shiftwidth=4
 set softtabstop=4
@@ -7,46 +21,32 @@ set number
 set scrolloff=5
 set mouse=a
 set noswapfile
+set termguicolors
+set updatetime=50
 
-" Plugins will be downloaded under the specified directory
-call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
-
-" Plugins
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'sindrets/diffview.nvim'
-Plug 'preservim/nerdtree'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'alligator/accent.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'nvim-tree/nvim-web-devicons'
-
-" List ends here. Plugins become visible to Vim after this call
-call plug#end()
-
-" Commands
+" Bind
 nmap <silent> <C-p> :Files <CR>
 nmap <silent> <C-f> :Rg <CR> 
 nmap <silent> <C-t> :bp <CR>
-nmap <silent> <C-e> :NERDTree <CR>
+nmap <silent> <C-e> :NERDTreeToggle <CR>
 nmap <silent> <C-d> :GitGutterPreviewHunk <CR>
 nmap <silent> <C-q> :qa <CR>
 nmap <silent> <2-LeftMouse> <Plug>(coc-definition)
 nmap <silent> gD <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Remove help from nerd tree
+" Color & style
+colo minimal-base16
 let NERDTreeMinimalUI=1
-
-" Set theme
-colo accent
-
-" Clear GitGutter SignColumn
-highlight clear SignColumn
-
-" Set update time
-set updatetime=50
+let g:conflict_marker_highlight_group = ''
+let g:conflict_marker_begin = '^<<<<<<< .*$'
+let g:conflict_marker_end   = '^>>>>>>> .*$'
+highlight ConflictMarkerBegin guibg=#2f7366
+highlight ConflictMarkerOurs guibg=#2e5049
+highlight ConflictMarkerTheirs guibg=#344f69
+highlight ConflictMarkerEnd guibg=#2f628e
+highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
 
 lua <<EOF
 EOF
+
