@@ -2,8 +2,9 @@
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
 Plug 'Yazeed1s/minimal.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
 Plug 'preservim/nerdtree'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
 
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -17,7 +18,6 @@ set title
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-set number
 set scrolloff=5
 set mouse=a
 set noswapfile
@@ -25,15 +25,15 @@ set termguicolors
 set updatetime=50
 
 " Bind
-nmap <silent> <C-p> :Files <CR>
-nmap <silent> <C-f> :Rg <CR> 
-nmap <silent> <C-t> :bp <CR>
-nmap <silent> <C-e> :NERDTreeToggle <CR>
-nmap <silent> <C-d> :GitGutterPreviewHunk <CR>
-nmap <silent> <C-q> :qa <CR>
+nmap <silent> <C-p>         :Files <CR>
+nmap <silent> <C-f>         :Rg <CR> 
+nmap <silent> <C-t>         :bp <CR>
+nmap <silent> <C-e>         :NERDTreeToggle <CR>
+nmap <silent> <C-d>         :GitGutterPreviewHunk <CR>
+nmap <silent> <C-q>         :qa <CR>
 nmap <silent> <2-LeftMouse> <Plug>(coc-definition)
-nmap <silent> gD <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gD            <Plug>(coc-implementation)
+nmap <silent> gr            <Plug>(coc-references)
 
 " Color & style
 colo minimal-base16
@@ -47,6 +47,6 @@ highlight ConflictMarkerTheirs guibg=#344f69
 highlight ConflictMarkerEnd guibg=#2f628e
 highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
 
-lua <<EOF
-EOF
-
+lua << END
+	require('lualine').setup()
+END
