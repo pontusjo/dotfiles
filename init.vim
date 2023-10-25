@@ -14,7 +14,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
-
+Plug 'mhartington/formatter.nvim'
 
 call plug#end()
 
@@ -26,8 +26,8 @@ set tabstop=4
 set scrolloff=5
 set mouse=a
 set noswapfile
-set termguicolors
 set updatetime=50
+"set termguicolors (only use at windows)
 
 " Bind
 nmap <silent> <S-f> :Rg <CR> 
@@ -40,9 +40,10 @@ nmap <silent> <C-q> :qa <CR>
 nmap <silent> <C-Left> :bprev <CR>
 nmap <silent> <C-Right>	:bnext <CR>
 nmap <silent> <2-LeftMouse> <Plug>(coc-definition)
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
-" Color & style
+autocmd BufWritePost * silent! call CocAction('format')
+
+"Color & style
 colo desert
 let NERDTreeMinimalUI=1
 let g:conflict_marker_highlight_group = ''
