@@ -34,13 +34,11 @@ set number
 
 " bind
 nmap <silent> <S-f> :Rg <CR> 
-nmap <silent> <C-p> :Files <CR>
+nmap <silent> <S-p> :Files <CR>
 nmap <silent> <C-f> :BLines <CR>
 nmap <silent> <C-e> :NERDTreeToggle <CR>
 nmap <silent> <C-d> :GitGutterPreviewHunk <CR>
 nmap <silent> <C-q> :qa <CR>
-nmap <silent> <C-Left> :bprev <CR>
-nmap <silent> <C-Right>	:bnext <CR>
 nmap <silent> <2-LeftMouse> <Plug>(coc-definition)
 
 autocmd BufWritePost * silent! call CocAction('format')
@@ -61,13 +59,27 @@ let g:startify_files_number = 20
 let g:startify_enable_special = 0
 let g:startify_lists = [{ 'type': 'files', 'header': ['']}]
 
-let g:vrc_output_buffer_name = '__VRC_OUTPUT.json'
+highlight ConflictMarkerBegin ctermfg=LightGreen
+highlight ConflictMarkerOurs ctermfg=LightGreen
+highlight ConflictMarkerTheirs ctermfg=LightCyan
+highlight ConflictMarkerEnd ctermfg=LightCyan
+highlight ConflictMarkerCommonAncestorsHunk ctermfg=LightBlue
 
-highlight ConflictMarkerBegin guibg=#2f7366
-highlight ConflictMarkerOurs guibg=#2e5049
-highlight ConflictMarkerTheirs guibg=#344f69
-highlight ConflictMarkerEnd guibg=#2f628e
-highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
+highlight MatchParen ctermfg=white ctermbg=NONE cterm=NONE
+highlight Visual ctermfg=white ctermbg=NONE cterm=NONE
+
+" right click menu
+noremenu <silent> .1 PopUp.Forward :bprev<CR>
+noremenu <silent> .2 PopUp.Backward :bnext<CR>
+noremenu <silent> .3 PopUp.Save :w<CR>
+noremenu <silent> .4 PopUp.Narrow :NR!<CR>
+
+aunmenu PopUp.How-to\ disable\ mouse
+
+" lua
+lua << END
+	require('lualine').setup()
+ENDestorsHunk guibg=#754a81
 
 " right click menu
 noremenu <silent> .1 PopUp.Forward :bprev<CR>
