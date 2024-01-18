@@ -18,6 +18,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'mhartington/formatter.nvim'
 Plug 'diepm/vim-rest-console'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'alanfortlink/blackjack.nvim'
+
 call plug#end()
 
 " option
