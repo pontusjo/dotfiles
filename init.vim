@@ -17,9 +17,11 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mhartington/formatter.nvim'
 Plug 'diepm/vim-rest-console'
+Plug 'tveskag/nvim-blame-line'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'alanfortlink/blackjack.nvim'
+
 
 call plug#end()
 
@@ -42,6 +44,7 @@ nmap <silent> <C-f> :BLines <CR>
 nmap <silent> <C-e> :NERDTreeToggle <CR>
 nmap <silent> <C-d> :GitGutterPreviewHunk <CR>
 nmap <silent> <C-q> :qa <CR>
+nmap <silent> <C-b> :ToggleBlameLine<CR>
 nmap <silent> <2-LeftMouse> <Plug>(coc-definition)
 
 autocmd BufWritePost * silent! call CocAction('format')
